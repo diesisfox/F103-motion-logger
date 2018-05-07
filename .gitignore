@@ -7,7 +7,8 @@ Src/Backup
 .cproject
 
 # Generated Libraries
-# Drivers/
+Drivers/
+Middlewares/
 
 # IAR Settings
 **/settings/*.crun

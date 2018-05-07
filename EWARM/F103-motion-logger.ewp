@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <fileVersion>2</fileVersion>
+  <fileVersion>3</fileVersion>
   <configuration>
     <name>F103-motion-logger</name>
     <toolchain>
@@ -11,7 +11,7 @@
       <name>General</name>
       <archiveVersion>3</archiveVersion>
       <data>
-        <version>21</version>
+        <version>30</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -27,27 +27,12 @@
           <state>F103-motion-logger/List</state>
         </option>
         <option>
-          <name>Variant</name>
-          <version>19</version>
-          <state />
-        </option>
-        <option>
           <name>GEndianMode</name>
           <state>0</state>
         </option>
         <option>
-          <name>Input variant</name>
-          <version>3</version>
-          <state>1</state>
-        </option>
-        <option>
           <name>Input description</name>
           <state />
-        </option>
-        <option>
-          <name>Output variant</name>
-          <version>2</version>
-          <state>1</state>
         </option>
         <option>
           <name>Output description</name>
@@ -56,11 +41,6 @@
         <option>
           <name>GOutputBinary</name>
           <state>0</state>
-        </option>
-        <option>
-          <name>FPU</name>
-          <version>3</version>
-          <state>5</state>
         </option>
         <option>
           <name>OGCoreOrChip</name>
@@ -86,7 +66,7 @@
         </option>
         <option>
           <name>OGLastSavedByProductVersion</name>
-          <state>6.30.1.53141</state>
+          <state>8.22.2.15993</state>
         </option>
         <option>
           <name>GeneralEnableMisra</name>
@@ -135,13 +115,8 @@
           <state>$TOOLKIT_DIR$\INC\c\DLib_Config_Full.h</state>
         </option>
         <option>
-          <name>GFPUCoreSlave</name>
-          <version>21</version>
-          <state>38</state>
-        </option>
-        <option>
           <name>GBECoreSlave</name>
-          <version>21</version>
+          <version>26</version>
           <state>38</state>
         </option>
         <option>
@@ -152,20 +127,100 @@
           <name>OGUseCmsisDspLib</name>
           <state>0</state>
         </option>
+        <option>
+          <name>GRuntimeLibThreads</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>CoreVariant</name>
+          <version>26</version>
+          <state>38</state>
+        </option>
+        <option>
+          <name>GFPUDeviceSlave</name>
+          <state>STM32F103C8	ST STM32F103C8</state>
+        </option>
+        <option>
+          <name>FPU2</name>
+          <version>0</version>
+          <state>0</state>
+        </option>
+        <option>
+          <name>NrRegs</name>
+          <version>0</version>
+          <state>0</state>
+        </option>
+        <option>
+          <name>NEON</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>GFPUCoreSlave2</name>
+          <version>26</version>
+          <state>38</state>
+        </option>
+        <option>
+          <name>OGCMSISPackSelectDevice</name>
+        </option>
+        <option>
+          <name>OgLibHeap</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>OGLibAdditionalLocale</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>OGPrintfVariant</name>
+          <version>0</version>
+          <state>1</state>
+        </option>
+        <option>
+          <name>OGPrintfMultibyteSupport</name>
+          <state>1</state>
+        </option>
+        <option>
+          <name>OGScanfVariant</name>
+          <version>0</version>
+          <state>1</state>
+        </option>
+        <option>
+          <name>OGScanfMultibyteSupport</name>
+          <state>1</state>
+        </option>
+        <option>
+          <name>GenLocaleTags</name>
+          <state />
+        </option>
+        <option>
+          <name>GenLocaleDisplayOnly</name>
+          <state />
+        </option>
+        <option>
+          <name>DSPExtension</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>TrustZone</name>
+          <state>0</state>
+        </option>
       </data>
     </settings>
     <settings>
       <name>ICCARM</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>28</version>
+        <version>34</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
+        <option>
+          <name>CCOptimizationNoSizeConstraints</name>
+          <state>0</state>
+        </option>
         <option>
           <name>CCDefines</name>
           <state>USE_HAL_DRIVER</state>
           <state>STM32F103xB</state>
-          <state />
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -226,7 +281,7 @@
         <option>
           <name>CCAllowList</name>
           <version>1</version>
-          <state>1111111</state>
+          <state>11111110</state>
         </option>
         <option>
           <name>CCDebugInfo</name>
@@ -258,10 +313,6 @@
         </option>
         <option>
           <name>CCRequirePrototypes</name>
-          <state>0</state>
-        </option>
-        <option>
-          <name>CCMultibyteSupport</name>
           <state>0</state>
         </option>
         <option>
@@ -302,6 +353,30 @@
           <state>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/include</state>
           <state>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS</state>
           <state>$PROJ_DIR$/../Drivers/CMSIS/Include</state>
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
+          <state />
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -310,10 +385,6 @@
         <option>
           <name>CCCodeSection</name>
           <state>.text</state>
-        </option>
-        <option>
-          <name>IInterwork2</name>
-          <state>0</state>
         </option>
         <option>
           <name>IProcessorMode2</name>
@@ -367,18 +438,6 @@
           <state>0</state>
         </option>
         <option>
-          <name>IccCppDialect</name>
-          <state>2</state>
-        </option>
-        <option>
-          <name>IccExceptions</name>
-          <state>0</state>
-        </option>
-        <option>
-          <name>IccRTTI</name>
-          <state>0</state>
-        </option>
-        <option>
           <name>IccStaticDestr</name>
           <state>0</state>
         </option>
@@ -394,13 +453,50 @@
           <name>IccFloatSemantics</name>
           <state>0</state>
         </option>
+        <option>
+          <name>CCNoLiteralPool</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>CCOptStrategySlave</name>
+          <version>0</version>
+          <state>1</state>
+        </option>
+        <option>
+          <name>CCGuardCalls</name>
+          <state>1</state>
+        </option>
+        <option>
+          <name>CCEncSource</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>CCEncOutput</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>CCEncOutputBom</name>
+          <state>1</state>
+        </option>
+        <option>
+          <name>CCEncInput</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>IccExceptions2</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>IccRTTI2</name>
+          <state>0</state>
+        </option>
       </data>
     </settings>
     <settings>
       <name>AARM</name>
       <archiveVersion>2</archiveVersion>
       <data>
-        <version>8</version>
+        <version>10</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -529,10 +625,6 @@
           <state>$FILE_BNAME$.o</state>
         </option>
         <option>
-          <name>AMultibyteSupport</name>
-          <state>0</state>
-        </option>
-        <option>
           <name>ALimitErrorsCheck</name>
           <state>0</state>
         </option>
@@ -556,6 +648,10 @@
           <name>AExtraOptionsV2</name>
           <state />
         </option>
+        <option>
+          <name>AsmNoLiteralPool</name>
+          <state>0</state>
+        </option>
       </data>
     </settings>
     <settings>
@@ -567,7 +663,7 @@
         <debug>1</debug>
         <option>
           <name>OOCOutputFormat</name>
-          <version>2</version>
+          <version>3</version>
           <state>0</state>
         </option>
         <option>
@@ -594,6 +690,7 @@
       <data>
         <extensions />
         <cmdline />
+        <hasPrio>0</hasPrio>
       </data>
     </settings>
     <settings>
@@ -613,7 +710,7 @@
       <name>ILINK</name>
       <archiveVersion>0</archiveVersion>
       <data>
-        <version>14</version>
+        <version>20</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -782,10 +879,6 @@
           <state>1</state>
         </option>
         <option>
-          <name>CrcAlgo</name>
-          <state>1</state>
-        </option>
-        <option>
           <name>CrcPoly</name>
           <state>0x11021</state>
         </option>
@@ -887,6 +980,48 @@
           <name>IlinkStackCallGraphFile</name>
           <state />
         </option>
+        <option>
+          <name>CrcAlgorithm</name>
+          <version>1</version>
+          <state>1</state>
+        </option>
+        <option>
+          <name>CrcUnitSize</name>
+          <version>0</version>
+          <state>0</state>
+        </option>
+        <option>
+          <name>IlinkThreadsSlave</name>
+          <state>1</state>
+        </option>
+        <option>
+          <name>IlinkLogCallGraph</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>IlinkIcfFile_AltDefault</name>
+          <state />
+        </option>
+        <option>
+          <name>IlinkEncInput</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>IlinkEncOutput</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>IlinkEncOutputBom</name>
+          <state>1</state>
+        </option>
+        <option>
+          <name>IlinkHeapSelect</name>
+          <state>1</state>
+        </option>
+        <option>
+          <name>IlinkLocaleSelect</name>
+          <state>1</state>
+        </option>
       </data>
     </settings>
     <settings>
@@ -917,338 +1052,134 @@
     </settings>
   </configuration>
   <group>
-    <name>Drivers</name>
-    <excluded>
-      <configuration />
-    </excluded>
-    <file>
-      <name />
-      <excluded>
-        <configuration />
-      </excluded>
-    </file>
-    <group>
-      <name>STM32F1xx_HAL_Driver</name>
-      <excluded>
-        <configuration />
-      </excluded>
-      <file>
-        <name />
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi_ex.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-    </group>
-    <group>
-      <name>CMSIS</name>
-      <excluded>
-        <configuration />
-      </excluded>
-      <file>
-        <name />
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/..//Src/system_stm32f1xx.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-    </group>
-  </group>
-  <group>
     <name>Application</name>
-    <excluded>
-      <configuration />
-    </excluded>
-    <file>
-      <name />
-      <excluded>
-        <configuration />
-      </excluded>
-    </file>
     <group>
       <name>EWARM</name>
-      <excluded>
-        <configuration />
-      </excluded>
       <file>
-        <name>/Users/jamesliu/Development/STM32/F103-motion-logger//EWARM/startup_stm32f103xb.s</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\startup_stm32f103xb.s</name>
       </file>
     </group>
     <group>
       <name>User</name>
-      <excluded>
-        <configuration />
-      </excluded>
-      <file>
-        <name />
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
       <group>
         <name>..</name>
-        <excluded>
-          <configuration />
-        </excluded>
-        <file>
-          <name />
-          <excluded>
-            <configuration />
-          </excluded>
-        </file>
         <group>
           <name>Src</name>
-          <excluded>
-            <configuration />
-          </excluded>
-          <file>
-            <name />
-            <excluded>
-              <configuration />
-            </excluded>
-          </file>
         </group>
       </group>
       <file>
-        <name>$PROJ_DIR$/../Src/freertos.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Src\freertos.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Src/i2c.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Src\main.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Src/stm32f1xx_hal_timebase_TIM.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Src\stm32f1xx_hal_msp.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Src/stm32f1xx_it.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Src\stm32f1xx_hal_timebase_TIM.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Src/gpio.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Src\stm32f1xx_it.c</name>
+      </file>
+    </group>
+  </group>
+  <group>
+    <name>Drivers</name>
+    <group>
+      <name>CMSIS</name>
+      <file>
+        <name>$PROJ_DIR$\..\Src\system_stm32f1xx.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Src/stm32f1xx_hal_msp.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$/..//Src/system_stm32f1xx.c</name>
+      </file>
+    </group>
+    <group>
+      <name>STM32F1xx_HAL_Driver</name>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Src/main.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_cortex.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Src/usart.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Src/spi.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_flash.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_flash_ex.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio_ex.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_i2c.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_pwr.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rcc.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rcc_ex.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_spi.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_spi_ex.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim_ex.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_uart.c</name>
       </file>
     </group>
   </group>
   <group>
     <name>Middlewares</name>
-    <excluded>
-      <configuration />
-    </excluded>
-    <file>
-      <name />
-      <excluded>
-        <configuration />
-      </excluded>
-    </file>
     <group>
       <name>FreeRTOS</name>
-      <excluded>
-        <configuration />
-      </excluded>
       <file>
-        <name />
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/croutine.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FreeRTOS\Source\croutine.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/event_groups.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FreeRTOS\Source\event_groups.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FreeRTOS\Source\portable\MemMang\heap_4.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM3/port.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FreeRTOS\Source\list.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/queue.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM3\port.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM3/portasm.s</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM3\portasm.s</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/list.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FreeRTOS\Source\queue.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/timers.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FreeRTOS\Source\tasks.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/tasks.c</name>
-        <excluded>
-          <configuration />
-        </excluded>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FreeRTOS\Source\timers.c</name>
       </file>
     </group>
   </group>

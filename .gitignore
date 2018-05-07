@@ -6,7 +6,10 @@ Src/Backup
 
 .cproject
 
-# IAR Settings  
+# Generated Libraries
+# Drivers/
+
+# IAR Settings
 **/settings/*.crun
 **/settings/*.dbgdt
 **/settings/*.cspy
@@ -22,12 +25,12 @@ EWARM/*.dep
 BuildLog.log
 **/List/*.map
 
-# IAR Debug Exe  
+# IAR Debug Exe
 **/Exe/*.sim
 **/Exe/*.out
 **/List/*.map
 
-# IAR Debug Obj  
+# IAR Debug Obj
 **/Obj/*.pbi
 **/Obj/*.pbi.*
 **/Obj/*.pbd

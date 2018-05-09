@@ -58,8 +58,6 @@
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c1;
 
-SPI_HandleTypeDef hspi1;
-
 UART_HandleTypeDef huart1;
 
 osThreadId defaultTaskHandle;
@@ -76,7 +74,6 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_USART1_UART_Init(void);
-static void MX_SPI1_Init(void);
 void StartDefaultTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
@@ -119,7 +116,6 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_USART1_UART_Init();
-  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -239,30 +235,6 @@ static void MX_I2C1_Init(void)
 
 }
 
-/* SPI1 init function */
-static void MX_SPI1_Init(void)
-{
-
-  /* SPI1 parameter configuration*/
-  hspi1.Instance = SPI1;
-  hspi1.Init.Mode = SPI_MODE_MASTER;
-  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
-  hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
-  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
-  hspi1.Init.NSS = SPI_NSS_HARD_OUTPUT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
-  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
-  hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
-  hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-  hspi1.Init.CRCPolynomial = 10;
-  if (HAL_SPI_Init(&hspi1) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
-
-}
-
 /* USART1 init function */
 static void MX_USART1_UART_Init(void)
 {
@@ -314,8 +286,10 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PA0 PA1 PA2 PA3 
+                           PA4 PA5 PA6 PA7 
                            PA8 PA11 PA12 PA15 */
   GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3 
+                          |GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7 
                           |GPIO_PIN_8|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_15;
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -323,11 +297,11 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pins : PB0 PB1 PB2 PB10 
                            PB11 PB12 PB13 PB14 
                            PB15 PB3 PB4 PB5 
-                           PB8 PB9 */
+                           PB6 PB7 */
   GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_10 
                           |GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14 
                           |GPIO_PIN_15|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5 
-                          |GPIO_PIN_8|GPIO_PIN_9;
+                          |GPIO_PIN_6|GPIO_PIN_7;
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
@@ -342,11 +316,53 @@ void StartDefaultTask(void const * argument)
 {
 
   /* USER CODE BEGIN 5 */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
+    uint8_t rxBuf[14];
+	
+	HAL_I2C_DeInit(&hi2c1);
+	
+	
+	GPIO_InitTypeDef GPIO_InitStruct;
+
+  /*Configure GPIO pin : PC13 */
+  GPIO_InitStruct.Pin = GPIO_PIN_8 | GPIO_PIN_9;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+  
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, 1);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, 1);
+  
+	uint8_t tmp = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8);
+	tmp = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_9);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, 0);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, 0);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, 1);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, 1);
+	
+	tmp = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8);
+	tmp = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_9);
+	
+	osDelay(1);
+	
+	HAL_I2C_Init(&hi2c1);
+	
+	osDelay(1);
+	
+//	while((__HAL_I2C_GET_FLAG(&hi2c1, I2C_FLAG_BUSY) ? SET : RESET) == SET) 
+//  {
+//  }
+
+//    HAL_I2C_Master_Transmit(&hi2c1, 0x68, "\x6b\x00", 2, 1000000);
+	HAL_I2C_Mem_Write(&hi2c1, 0x68, 0x6b, 1, "\x00", 1, 100000);
+    HAL_I2C_Master_Transmit(&hi2c1, 0x68, "\x1b\x00", 2, 1000000);
+    HAL_I2C_Master_Transmit(&hi2c1, 0x68, "\x1c\x18", 2, 1000000);
+    /* Infinite loop */
+    for(;;){
+        osDelay(1);
+        HAL_I2C_Mem_Read(&hi2c1, 0x68, 0x3b, 1, rxBuf, 14, 1000000);
+        
+    }
   /* USER CODE END 5 */ 
 }
 

@@ -220,7 +220,7 @@ static void MX_I2C1_Init(void)
 {
 
   hi2c1.Instance = I2C1;
-  hi2c1.Init.ClockSpeed = 400000;
+  hi2c1.Init.ClockSpeed = 100000;
   hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
   hi2c1.Init.OwnAddress1 = 0;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
@@ -354,13 +354,13 @@ void StartDefaultTask(void const * argument)
 //  }
 
 //    HAL_I2C_Master_Transmit(&hi2c1, 0x68, "\x6b\x00", 2, 1000000);
-	HAL_I2C_Mem_Write(&hi2c1, 0x68, 0x6b, 1, "\x00", 1, 100000);
-    HAL_I2C_Master_Transmit(&hi2c1, 0x68, "\x1b\x00", 2, 1000000);
-    HAL_I2C_Master_Transmit(&hi2c1, 0x68, "\x1c\x18", 2, 1000000);
+	HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x6b, 1, "\x00", 1, 100000);
+    HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x1b\x00", 2, 1000000);
+    HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x1c\x18", 2, 1000000);
     /* Infinite loop */
     for(;;){
         osDelay(1);
-        HAL_I2C_Mem_Read(&hi2c1, 0x68, 0x3b, 1, rxBuf, 14, 1000000);
+        HAL_I2C_Mem_Read(&hi2c1, 0xd0, 0x3b, 1, rxBuf, 14, 1000000);
         
     }
   /* USER CODE END 5 */ 

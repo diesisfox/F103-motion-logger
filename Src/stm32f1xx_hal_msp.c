@@ -113,7 +113,7 @@ __HAL_RCC_I2C1_CLK_ENABLE();
     __HAL_AFIO_REMAP_I2C1_ENABLE();
 
     /* Peripheral clock enable */
-//    __HAL_RCC_I2C1_CLK_ENABLE();
+    __HAL_RCC_I2C1_CLK_ENABLE();
   /* USER CODE BEGIN I2C1_MspInit 1 */
 
   /* USER CODE END I2C1_MspInit 1 */

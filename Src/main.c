@@ -342,12 +342,12 @@ void StartDefaultTask(void const * argument)
 	
 	tmp = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8);
 	tmp = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_9);
-	
-	osDelay(1);
-	
+//	
+//	osDelay(1);
+//	
 	HAL_I2C_Init(&hi2c1);
-	
-	osDelay(1);
+//	
+//	osDelay(1);
 	
 //	while((__HAL_I2C_GET_FLAG(&hi2c1, I2C_FLAG_BUSY) ? SET : RESET) == SET) 
 //  {

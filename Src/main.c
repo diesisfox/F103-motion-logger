@@ -6,41 +6,41 @@
   ******************************************************************************
   * This notice applies to any and all portions of this file
   * that are not between comment pairs USER CODE BEGIN and
-  * USER CODE END. Other portions of this file, whether 
+  * USER CODE END. Other portions of this file, whether
   * inserted by the user or by software development tools
   * are owned by their respective copyright owners.
   *
-  * Copyright (c) 2018 STMicroelectronics International N.V. 
+  * Copyright (c) 2018 STMicroelectronics International N.V.
   * All rights reserved.
   *
-  * Redistribution and use in source and binary forms, with or without 
+  * Redistribution and use in source and binary forms, with or without
   * modification, are permitted, provided that the following conditions are met:
   *
-  * 1. Redistribution of source code must retain the above copyright notice, 
+  * 1. Redistribution of source code must retain the above copyright notice,
   *    this list of conditions and the following disclaimer.
   * 2. Redistributions in binary form must reproduce the above copyright notice,
   *    this list of conditions and the following disclaimer in the documentation
   *    and/or other materials provided with the distribution.
-  * 3. Neither the name of STMicroelectronics nor the names of other 
-  *    contributors to this software may be used to endorse or promote products 
+  * 3. Neither the name of STMicroelectronics nor the names of other
+  *    contributors to this software may be used to endorse or promote products
   *    derived from this software without specific written permission.
-  * 4. This software, including modifications and/or derivative works of this 
+  * 4. This software, including modifications and/or derivative works of this
   *    software, must execute solely and exclusively on microcontroller or
   *    microprocessor devices manufactured by or for STMicroelectronics.
-  * 5. Redistribution and use of this software other than as permitted under 
-  *    this license is void and will automatically terminate your rights under 
-  *    this license. 
+  * 5. Redistribution and use of this software other than as permitted under
+  *    this license is void and will automatically terminate your rights under
+  *    this license.
   *
-  * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS" 
-  * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT 
-  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+  * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS"
+  * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT
+  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
   * PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY
-  * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT 
+  * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT
   * SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
   * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
-  * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
-  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
+  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+  * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
   * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
   * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
@@ -144,11 +144,11 @@ int main(void)
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
- 
+
 
   /* Start scheduler */
   osKernelStart();
-  
+
   /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
@@ -175,7 +175,7 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct;
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
 
-    /**Initializes the CPU, AHB and APB busses clocks 
+    /**Initializes the CPU, AHB and APB busses clocks
     */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
@@ -189,7 +189,7 @@ void SystemClock_Config(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-    /**Initializes the CPU, AHB and APB busses clocks 
+    /**Initializes the CPU, AHB and APB busses clocks
     */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
@@ -203,11 +203,11 @@ void SystemClock_Config(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-    /**Configure the Systick interrupt time 
+    /**Configure the Systick interrupt time
     */
   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
 
-    /**Configure the Systick 
+    /**Configure the Systick
     */
   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
 
@@ -254,13 +254,13 @@ static void MX_USART1_UART_Init(void)
 
 }
 
-/** Configure pins as 
-        * Analog 
-        * Input 
+/** Configure pins as
+        * Analog
+        * Input
         * Output
         * EVENT_OUT
         * EXTI
-        * Free pins are configured automatically as Analog (this feature is enabled through 
+        * Free pins are configured automatically as Analog (this feature is enabled through
         * the Code Generation settings)
 */
 static void MX_GPIO_Init(void)
@@ -285,22 +285,22 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PA0 PA1 PA2 PA3 
-                           PA4 PA5 PA6 PA7 
+  /*Configure GPIO pins : PA0 PA1 PA2 PA3
+                           PA4 PA5 PA6 PA7
                            PA8 PA11 PA12 PA15 */
-  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3 
-                          |GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7 
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3
+                          |GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7
                           |GPIO_PIN_8|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_15;
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PB0 PB1 PB2 PB10 
-                           PB11 PB12 PB13 PB14 
-                           PB15 PB3 PB4 PB5 
+  /*Configure GPIO pins : PB0 PB1 PB2 PB10
+                           PB11 PB12 PB13 PB14
+                           PB15 PB3 PB4 PB5
                            PB6 PB7 */
-  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_10 
-                          |GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14 
-                          |GPIO_PIN_15|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5 
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_10
+                          |GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14
+                          |GPIO_PIN_15|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5
                           |GPIO_PIN_6|GPIO_PIN_7;
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
@@ -317,53 +317,68 @@ void StartDefaultTask(void const * argument)
 
   /* USER CODE BEGIN 5 */
     uint8_t rxBuf[14];
-	
-	HAL_I2C_DeInit(&hi2c1);
-	
-	
-	GPIO_InitTypeDef GPIO_InitStruct;
 
-  /*Configure GPIO pin : PC13 */
-  GPIO_InitStruct.Pin = GPIO_PIN_8 | GPIO_PIN_9;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-  
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, 1);
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, 1);
-  
-	uint8_t tmp = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8);
-	tmp = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_9);
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, 0);
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, 0);
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, 1);
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, 1);
-	
-	tmp = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8);
-	tmp = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_9);
-//	
-//	osDelay(1);
-//	
+    // apply i2c filter defrosting hack
+    GPIO_InitTypeDef GPIO_InitStruct;
+    uint16_t i2cPin0 = GPIO_PIN_8; //scl
+    uint16_t i2cPin1 = GPIO_PIN_9; //sda
+    HAL_I2C_DeInit(&hi2c1);
+    GPIO_InitStruct.Pin = i2cPin0 | i2cPin1;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(GPIOB, i2cPin1, 1);
+    HAL_GPIO_WritePin(GPIOB, i2cPin0, 1);
+    HAL_GPIO_ReadPin(GPIOB, i2cPin0);
+    HAL_GPIO_ReadPin(GPIOB, i2cPin1);
+    HAL_GPIO_WritePin(GPIOB, i2cPin1, 0);
+    HAL_GPIO_WritePin(GPIOB, i2cPin0, 0);
+    HAL_GPIO_WritePin(GPIOB, i2cPin0, 1);
+    HAL_GPIO_WritePin(GPIOB, i2cPin1, 1);
+    HAL_GPIO_ReadPin(GPIOB, i2cPin0);
+    HAL_GPIO_ReadPin(GPIOB, i2cPin1);
 	HAL_I2C_Init(&hi2c1);
-//	
+
+    // warmup black magic
+	osDelay(5);
+
+    /* configure MPU6050 */
+    // make sure power is on
+	HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x6b, 1, "\x00", 1, 1000000);
+    // set gyro to 250 °/s
+    HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x1b, 1, "\x00", 1, 1000000);
+    // set acc to 16 g
+    HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x1c, 1, "\x18", 1, 1000000);
+    // enabel raw data interrupt
+    HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x38, 1, "\x01", 1, 1000000);
+	
 	osDelay(10);
 	
-//	while((__HAL_I2C_GET_FLAG(&hi2c1, I2C_FLAG_BUSY) ? SET : RESET) == SET) 
-//  {
-//  }
+	// apply i2c filter defrosting hack
+    HAL_I2C_DeInit(&hi2c1);
+    GPIO_InitStruct.Pin = i2cPin0 | i2cPin1;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(GPIOB, i2cPin1, 1);
+    HAL_GPIO_WritePin(GPIOB, i2cPin0, 1);
+    HAL_GPIO_ReadPin(GPIOB, i2cPin0);
+    HAL_GPIO_ReadPin(GPIOB, i2cPin1);
+    HAL_GPIO_WritePin(GPIOB, i2cPin1, 0);
+    HAL_GPIO_WritePin(GPIOB, i2cPin0, 0);
+    HAL_GPIO_WritePin(GPIOB, i2cPin0, 1);
+    HAL_GPIO_WritePin(GPIOB, i2cPin1, 1);
+    HAL_GPIO_ReadPin(GPIOB, i2cPin0);
+    HAL_GPIO_ReadPin(GPIOB, i2cPin1);
+	HAL_I2C_Init(&hi2c1);
 
-//    HAL_I2C_Master_Transmit(&hi2c1, 0x68, "\x6b\x00", 2, 1000000);
-	HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x6b, 1, "\x00", 1, 100000);
-    HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x1b\x00", 2, 1000000);
-    HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x1c\x18", 2, 1000000);
-    /* Infinite loop */
     for(;;){
         osDelay(1);
-        HAL_I2C_Mem_Read(&hi2c1, 0xd0, 0x3b, 1, rxBuf, 14, 1000000);
-        
+        HAL_I2C_Mem_Read(&hi2c1, 0xd0, 0x3b, 1, rxBuf, 14, 0);
     }
-  /* USER CODE END 5 */ 
+  /* USER CODE END 5 */
 }
 
 /**
@@ -412,7 +427,7 @@ void _Error_Handler(char *file, int line)
   * @retval None
   */
 void assert_failed(uint8_t* file, uint32_t line)
-{ 
+{
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

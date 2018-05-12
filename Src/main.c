@@ -57,6 +57,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c1;
+DMA_HandleTypeDef hdma_i2c1_rx;
+DMA_HandleTypeDef hdma_i2c1_tx;
 
 UART_HandleTypeDef huart1;
 
@@ -72,6 +74,7 @@ osStaticThreadDef_t defaultTaskControlBlock;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_USART1_UART_Init(void);
 void StartDefaultTask(void const * argument);
@@ -114,6 +117,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_I2C1_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
@@ -254,6 +258,24 @@ static void MX_USART1_UART_Init(void)
 
 }
 
+/**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Channel6_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel6_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel6_IRQn);
+  /* DMA1_Channel7_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel7_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel7_IRQn);
+
+}
+
 /** Configure pins as
         * Analog
         * Input
@@ -345,38 +367,23 @@ void StartDefaultTask(void const * argument)
 
     /* configure MPU6050 */
     // make sure power is on
-	HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x6b, 1, "\x00", 1, 1000000);
+	// HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x6b, 1, "\x00", 1, 1000000);
+    HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x6b\x00", 1, 1000000);
     // set gyro to 250 °/s
-    HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x1b, 1, "\x00", 1, 1000000);
+    // HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x1b, 1, "\x00", 1, 1000000);
+    HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x1b\x00", 1, 1000000);
     // set acc to 16 g
-    HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x1c, 1, "\x18", 1, 1000000);
+    // HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x1c, 1, "\x18", 1, 1000000);
+    HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x1c\x18", 1, 1000000);
     // enabel raw data interrupt
-    HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x38, 1, "\x01", 1, 1000000);
-	
+    // HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x38, 1, "\x01", 1, 1000000);
+    HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\xd0\x01", 1, 1000000);
+
 	osDelay(10);
-	
-	// apply i2c filter defrosting hack
-    HAL_I2C_DeInit(&hi2c1);
-    GPIO_InitStruct.Pin = i2cPin0 | i2cPin1;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
-    GPIO_InitStruct.Pull = GPIO_PULLUP;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-    HAL_GPIO_WritePin(GPIOB, i2cPin1, 1);
-    HAL_GPIO_WritePin(GPIOB, i2cPin0, 1);
-    HAL_GPIO_ReadPin(GPIOB, i2cPin0);
-    HAL_GPIO_ReadPin(GPIOB, i2cPin1);
-    HAL_GPIO_WritePin(GPIOB, i2cPin1, 0);
-    HAL_GPIO_WritePin(GPIOB, i2cPin0, 0);
-    HAL_GPIO_WritePin(GPIOB, i2cPin0, 1);
-    HAL_GPIO_WritePin(GPIOB, i2cPin1, 1);
-    HAL_GPIO_ReadPin(GPIOB, i2cPin0);
-    HAL_GPIO_ReadPin(GPIOB, i2cPin1);
-	HAL_I2C_Init(&hi2c1);
 
     for(;;){
         osDelay(1);
-        HAL_I2C_Mem_Read(&hi2c1, 0xd0, 0x3b, 1, rxBuf, 14, 0);
+        HAL_I2C_Mem_Read_DMA(&hi2c1, 0xd0, 0x3b, 1, rxBuf, 14);
     }
   /* USER CODE END 5 */
 }

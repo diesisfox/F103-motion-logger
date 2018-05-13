@@ -85,7 +85,13 @@ void StartDefaultTask(void const * argument);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-
+char int2Hex(uint8_t x){
+    if(x < 10){
+        return x + 0x30;
+    }else{
+        return x + 0x41 - 10;
+    }
+}
 /* USER CODE END 0 */
 
 /**
@@ -225,7 +231,7 @@ static void MX_I2C1_Init(void)
 
   hi2c1.Instance = I2C1;
   hi2c1.Init.ClockSpeed = 400000;
-  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_16_9;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
   hi2c1.Init.OwnAddress1 = 0;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
@@ -244,7 +250,7 @@ static void MX_USART1_UART_Init(void)
 {
 
   huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
+  huart1.Init.BaudRate = 9600;
   huart1.Init.WordLength = UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_1;
   huart1.Init.Parity = UART_PARITY_NONE;
@@ -330,7 +336,13 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef* hi2c){
+    void* lol = hi2c;
+}
 
+void HAL_I2C_ErrorCallback(I2C_HandleTypeDef* hi2c){
+    void* lol = hi2c;
+}
 /* USER CODE END 4 */
 
 /* StartDefaultTask function */
@@ -339,6 +351,7 @@ void StartDefaultTask(void const * argument)
 
   /* USER CODE BEGIN 5 */
     uint8_t rxBuf[14];
+    uint8_t txBuf[] = "0000,0000,0000,0000,0000,0000,0000\n";
 
     // apply i2c filter defrosting hack
     GPIO_InitTypeDef GPIO_InitStruct;
@@ -364,26 +377,38 @@ void StartDefaultTask(void const * argument)
 
     // warmup black magic
 	osDelay(5);
+    HAL_StatusTypeDef tmp;
 
     /* configure MPU6050 */
     // make sure power is on
 	// HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x6b, 1, "\x00", 1, 1000000);
-    HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x6b\x00", 1, 1000000);
+    tmp = HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x6b\x00", 2, 1000);
+    osDelay(1);
     // set gyro to 250 °/s
     // HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x1b, 1, "\x00", 1, 1000000);
-    HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x1b\x00", 1, 1000000);
+    tmp = HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x1b\x00", 2, 1000);
+    osDelay(1);
     // set acc to 16 g
     // HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x1c, 1, "\x18", 1, 1000000);
-    HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x1c\x18", 1, 1000000);
+    tmp = HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x1c\x18", 2, 1000);
+    osDelay(1);
     // enabel raw data interrupt
     // HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x38, 1, "\x01", 1, 1000000);
-    HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\xd0\x01", 1, 1000000);
+//    HAL_I2C_Master_Transmit_DMA(&hi2c1, 0xd0, "\xd0\x01", 1);
+    osDelay(1);
 
-	osDelay(10);
+//	osDelay(10);
 
     for(;;){
-        osDelay(1);
-        HAL_I2C_Mem_Read_DMA(&hi2c1, 0xd0, 0x3b, 1, rxBuf, 14);
+		osDelay(1);
+        tmp = HAL_I2C_Mem_Read_DMA(&hi2c1, 0xd0, 0x3b, 1, rxBuf, 14);
+        for(uint8_t i = 0; i < 7; i++){
+            txBuf[i*5+0] = int2Hex(rxBuf[i*2+0] >> 4);
+            txBuf[i*5+1] = int2Hex(rxBuf[i*2+0] & 0xf);
+            txBuf[i*5+2] = int2Hex(rxBuf[i*2+1] >> 4);
+            txBuf[i*5+3] = int2Hex(rxBuf[i*2+1] & 0xf);
+        }
+        HAL_UART_Transmit(&huart1, txBuf, sizeof(txBuf)-1, 1000);
     }
   /* USER CODE END 5 */
 }

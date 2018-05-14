@@ -379,18 +379,21 @@ void StartDefaultTask(void const * argument)
 	osDelay(5);
     HAL_StatusTypeDef tmp;
 
-    /* configure MPU6050 */
+    /* configure MPU6050 (@0x68) */
     // make sure power is on
 	// HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x6b, 1, "\x00", 1, 1000000);
     tmp = HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x6b\x00", 2, 1000);
+    if(tmp != HAL_OK) HAL_NVIC_SystemReset();
     osDelay(1);
     // set gyro to 250 °/s
     // HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x1b, 1, "\x00", 1, 1000000);
     tmp = HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x1b\x00", 2, 1000);
+    if(tmp != HAL_OK) HAL_NVIC_SystemReset();
     osDelay(1);
     // set acc to 16 g
     // HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x1c, 1, "\x18", 1, 1000000);
     tmp = HAL_I2C_Master_Transmit(&hi2c1, 0xd0, "\x1c\x18", 2, 1000);
+    if(tmp != HAL_OK) HAL_NVIC_SystemReset();
     osDelay(1);
     // enabel raw data interrupt
     // HAL_I2C_Mem_Write(&hi2c1, 0xd0, 0x38, 1, "\x01", 1, 1000000);
@@ -402,6 +405,7 @@ void StartDefaultTask(void const * argument)
     for(;;){
 		osDelay(1);
         tmp = HAL_I2C_Mem_Read_DMA(&hi2c1, 0xd0, 0x3b, 1, rxBuf, 14);
+        if(tmp != HAL_OK) HAL_NVIC_SystemReset();
         for(uint8_t i = 0; i < 7; i++){
             txBuf[i*5+0] = int2Hex(rxBuf[i*2+0] >> 4);
             txBuf[i*5+1] = int2Hex(rxBuf[i*2+0] & 0xf);
